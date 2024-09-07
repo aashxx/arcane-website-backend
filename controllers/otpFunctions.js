@@ -1,4 +1,4 @@
-const { db } =  require('../firebase');
+const { realdb } =  require('../firebase');
 const { ref, get, set, remove } = require('firebase/database');
 const nodemailer = require('nodemailer');
 const dotenv = require('dotenv');
@@ -24,13 +24,13 @@ const generateOtp = () => {
 const sendOtp = async (email) => {
   const otp = generateOtp();
 
-  await set(ref(db, `otps/${email.replace('.', '_')}`), {
+  await set(ref(realdb, `otps/${email.replace('.', '_')}`), {
     otp,
     createdAt: new Date().toISOString(),
   });
 
   await transporter.sendMail({
-    from: GOOGLE_USER,
+    from: process.env.GOOGLE_USER,
     to: email,
     subject: "Email Verification for ARCANE'24",
     html: `<p>Your OTP code is ${otp}</p>`,
@@ -39,7 +39,7 @@ const sendOtp = async (email) => {
 
 // Verify OTP
 const verifyOtp = async (email, enteredOtp) => {
-  const otpRef = ref(db, `otps/${email.replace('.', '_')}`);
+  const otpRef = ref(realdb, `otps/${email.replace('.', '_')}`);
   const snapshot = await get(otpRef);
 
   if (!snapshot.exists()) {
