@@ -4,7 +4,9 @@
   "description": "Backend controller functions for Arcane website",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ./index.js",
+    "start": "node ./index.js"
   },
   "author": "Aashir",
   "license": "ISC",
