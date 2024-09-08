@@ -39,8 +39,6 @@ const sendOtp = async (email) => {
   });
 };
 
-
-
 // Verify OTP
 const verifyOtp = async (email, enteredOtp) => {
   const otpRef = ref(realdb, `otps/${email.replace('.', '_')}`);
