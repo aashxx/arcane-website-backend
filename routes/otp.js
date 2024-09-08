@@ -7,8 +7,12 @@ const router = express.Router();
 router.post('/send-otp', async (req, res) => {
   const { email } = req.body;
   try {
-    await sendOtp(email);
-    res.status(200).send('OTP sent successfully');
+    const response = await sendOtp(email);
+    if(response) {
+      res.status(200).send('OTP sent successfully');
+    } else {
+      res.status(401).json({ result: "Email already registered" });
+    }
   } catch (error) {
     res.status(500).send(`Error sending OTP: ${error.message}`);
   }
