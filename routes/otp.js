@@ -18,7 +18,7 @@ router.post('/send-otp', async (req, res) => {
   }
 });
 
-// Endpoint to verify OTP
+// Endpoint to verify OTP -
 router.post('/verify-otp', async (req, res) => {
   const { email, otp } = req.body;
   try {
