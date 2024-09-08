@@ -11,7 +11,7 @@ router.post('/send-otp', async (req, res) => {
     if(response) {
       res.status(200).send('OTP sent successfully');
     } else {
-      res.status(401).json({ result: "Email already registered" });
+      res.status(200).json({ result: "Email already registered" });
     }
   } catch (error) {
     res.status(500).send(`Error sending OTP: ${error.message}`);
