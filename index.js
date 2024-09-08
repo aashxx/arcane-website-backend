@@ -11,6 +11,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use('/api/verify-email', require('./routes/otp.js'));
+app.use('/api/veridy-confirmation', require('./routes/confirmation.js'));
 
 app.get('/', (req, res) => {
     res.send("Arcane 24");
