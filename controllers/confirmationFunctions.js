@@ -45,7 +45,7 @@ const sendEventConfirmation = async (participant) => {
     await transporter.sendMail({
       from: process.env.GOOGLE_USER,
       to: participant.email,
-      subject: "ARCANE'24 Symposium Registration Successful",
+      subject: "[Important] ARCANE'24 Symposium Registration Successful",
       html: emailTemplate,
     });
 };

@@ -11,6 +11,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use('/api/otp', require('./routes/otp.js'));
+app.use('/api/payment', require('./routes/payment.js'));
 app.use('/api/registration', require('./routes/confirmation.js'));
 
 app.get('/', (req, res) => {
