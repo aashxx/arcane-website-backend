@@ -1,7 +1,8 @@
-const { db } =  require('../firebase');
+const { db, storage } =  require('../firebase');
 const nodemailer = require('nodemailer');
 const dotenv = require('dotenv');
 const { setDoc, doc } = require('firebase/firestore');
+const { ref, uploadBytes, getDownloadURL } = require('firebase/storage'); 
 
 dotenv.config();
 
@@ -18,7 +19,15 @@ const transporter = nodemailer.createTransport({
 const writeToDatabase = async (participant, transaction) => {
     try {
       await setDoc(doc(db, "requests", participant.email), participant);
-      await setDoc(doc(db, "payments", transaction.transactionId), transaction);
+
+      const imageRef = ref(storage, `screenshots/${transaction.transactionId}.png`);
+      const uploadResult = await uploadBytes(imageRef, transaction.transactionScreenshot);
+      const downloadURL = await getDownloadURL(uploadResult.ref);
+      const transactionData = { 
+        ...transaction,
+        transactionScreenshot: downloadURL 
+      };
+      await setDoc(doc(db, "payments", transaction.transactionId), transactionData);
     } catch (error) {
       console.error("Error writing to db", error);
     }
