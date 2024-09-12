@@ -25,4 +25,4 @@ const sendAffirmationEmail = async (participant) => {
     });
 }
 
-module.exports = { writeToDatabase, sendAffirmationEmail };
+module.exports = { sendAffirmationEmail };
