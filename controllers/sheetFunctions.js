@@ -41,7 +41,7 @@ const writeParticipantData = async (participant) => {
     participant.timestamp
   ];
 
-  await appendDataToSheet(auth, 'Overall!A1:H1', rowData);
+  await appendDataToSheet(auth, 'Overall!A1:K1', rowData);
 
   if (participant.food !== "No") {
     const foodData = [
