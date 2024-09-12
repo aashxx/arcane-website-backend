@@ -36,6 +36,8 @@ const writeParticipantData = async (participant) => {
     participant.year,
     participant.food,
     participant.events.join(', '), 
+    participant.paid,
+    participant.proof,
     participant.timestamp
   ];
 
