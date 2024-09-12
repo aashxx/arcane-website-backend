@@ -25,9 +25,12 @@ const generateOtp = () => {
 const sendOtp = async (email) => {
 
   const userDoc = doc(db, "registrations", email);
-  const checkExistingUser = await getDoc(userDoc);
+  const reqDoc = doc(db, "requests", email);
 
-  if(checkExistingUser.exists()) {
+  const checkExistingUser = await getDoc(userDoc);
+  const checkExistingReq = await getDoc(reqDoc);
+
+  if(checkExistingUser.exists() || checkExistingReq.exists()) {
     return false;
   }
 
