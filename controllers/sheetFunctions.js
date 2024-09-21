@@ -35,12 +35,24 @@ const writeParticipantData = async (participant) => {
     participant.degree,
     participant.year,
     participant.events.join(', '), 
+    participant.food,
     participant.paid,
     participant.proof,
     participant.timestamp
   ];
 
-  await appendDataToSheet(auth, 'Overall!A1:K1', rowData);
+  await appendDataToSheet(auth, 'Overall!A1:L1', rowData);
+
+  const foodData = [
+    participant.fullName,
+    participant.college,
+    participant.email,
+    participant.phone,
+    participant.degree,
+    participant.year,
+    participant.food,
+  ];
+  await appendDataToSheet(auth, 'Food!A1:G1', foodData);
 
   for (const event of participant.events) {
     const eventData = [
