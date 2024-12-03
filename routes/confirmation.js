@@ -40,7 +40,7 @@ router.post('/send-email', async (req, res) => {
   const { productData, reciever } = req.body;
   try {
     await sendEmail(productData, reciever);
-    res.status(200).send('Senr=t successfully');
+    res.status(200).send('Sent successfully');
   } catch (error) {
     res.status(500).send(`Error sending email: ${error.message}`);
   }
