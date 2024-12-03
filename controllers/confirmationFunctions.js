@@ -69,5 +69,17 @@ const sendEventRejection = async (participant) => {
   }
 }
 
-module.exports = { writeToFirestore, sendEventConfirmation, sendEventRejection };
+const sendEmail = async (productData, reciever) => {
+
+  const emailTemplate = `<h3>Your Ordered</h3><br><p>${productData.name}</p><p>Thank you for shopping</p>`
+
+  await transporter.sendMail({
+    from: process.env.GOOGLE_USER,
+    to: reciever,
+    subject: "Your Order has been placed",
+    html: emailTemplate
+  });
+}
+
+module.exports = { writeToFirestore, sendEventConfirmation, sendEventRejection, sendEmail };
   
